@@ -16,7 +16,8 @@ function inverserTableau(tableau) {
     return resultat;
 }
 
-const exemple = [1, 2, 3, 4, 5];
+const exemple = [6, 2, 3, 4, 5];
+console.log(Math.min(...exemple));
 // console.log(exemple.reverse());
 console.log(inverserTableau(exemple)); // [5, 4, 3, 2, 1]
 

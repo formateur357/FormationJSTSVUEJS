@@ -1,0 +1,12 @@
+Exercice:
+Objectif: Écrire une fonction processNumbers qui prend en entrée un tableau de chaînes de caractères. Cette fonction doit:
+
+Convertir chaque chaîne de caractères en nombre.
+Ajouter 10 à chaque nombre.
+Renvoyer un nouveau tableau avec ces nombres modifiés.
+Si une des chaînes de caractères ne peut pas être convertie en nombre, elle doit attraper cette exception et renvoyer un message d'erreur spécifique.
+
+Exercice 2:
+Objectif: Écrire une fonction divideNumbers qui prend deux tableaux de nombres, nums et divisors.
+Pour chaque numéro dans nums, divisez-le par chaque numéro dans divisors et stockez le résultat dans un tableau.
+Si une division par zéro se produit, ou si un des éléments n'est pas un nombre, la fonction doit attraper cette exception et stocker un message d'erreur approprié.
