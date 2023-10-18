@@ -1,0 +1,62 @@
+1. Inversion de tableau
+
+Objectif : Inverser les éléments d'un tableau sans utiliser la méthode reverse().
+
+function inverserTableau(tableau) {
+    // Votre code ici
+}
+
+const exemple = [1, 2, 3, 4, 5];
+console.log(inverserTableau(exemple)); // [5, 4, 3, 2, 1]
+
+2. Recherche dans un tableau d'objets
+
+Objectif : Écrire une fonction qui, étant donné un tableau d'objets et une clé, renvoie tous les objets qui ont une valeur spécifique pour cette clé.
+
+const personnes = [
+    { nom: "Jean", age: 25 },
+    { nom: "Marie", age: 30 },
+    { nom: "Luc", age: 25 },
+];
+
+function rechercheParCle(tab, cle, valeur) {
+    // Votre code ici
+}
+
+console.log(rechercheParCle(personnes, 'age', 25));
+// [{ nom: "Jean", age: 25 }, { nom: "Luc", age: 25 }]
+
+3. Supprimer les doublons d'un tableau
+
+Objectif : Écrire une fonction qui prend un tableau en entrée et renvoie un nouveau tableau sans doublons.
+
+function supprimerDoublons(tableau) {
+    // Votre code ici
+}
+
+const exemple = [1, 2, 2, 3, 4, 4, 5];
+console.log(supprimerDoublons(exemple)); // [1, 2, 3, 4, 5]
+
+4. Compter les occurrences dans un tableau
+
+Objectif : Écrire une fonction qui compte le nombre d'occurrences de chaque élément dans un tableau.
+
+function compterOccurrences(tableau) {
+    // Votre code ici
+}
+
+const exemple = ["pomme", "banane", "pomme", "orange", "banane", "pomme"];
+console.log(compterOccurrences(exemple));
+// { pomme: 3, banane: 2, orange: 1 }
+
+5. Fusionner deux objets
+
+Objectif : Écrire une fonction qui fusionne deux objets. Si les deux objets ont des propriétés en commun, les valeurs de l'objet secondaire devraient écraser celles de l'objet principal.
+
+function fusionnerObjets(obj1, obj2) {
+    // Votre code ici
+}
+
+const objA = { a: 1, b: 2 };
+const objB = { b: 3, c: 4 };
+console.log(fusionnerObjets(objA, objB)); // { a: 1, b: 3, c: 4 }
