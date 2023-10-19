@@ -8,3 +8,8 @@ document.getElementById('showHref').addEventListener('click', function() {
     const link = paragraphe.querySelector('a');
     alert(link.getAttribute('href'));
 });
+
+// document.getElementById('showHref').addEventListener('click', () => {
+//     const link = paragraphe.querySelector('a');
+//     alert(link.getAttribute('href'));
+// });
