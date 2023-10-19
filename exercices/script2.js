@@ -12,3 +12,18 @@ document.getElementById('addLine').addEventListener('click', () => {
     cell2.innerHTML = `Ligne${table.rows.length} cellule 2`;
 
 })
+
+var container = document.getElementById("container");
+container.innerHTML += "<p> hello </p>";
+console.log(container.textContent);
+console.log(container.innerHTML);
+
+var parent = container.parentNode;
+console.log(parent.nodeName);
+
+var enfants = container.childNodes;
+var enfants2 = container.children;
+for(enfant of enfants)
+    console.log(enfant)
+for(enfant of enfants2)
+    console.log(enfant);
