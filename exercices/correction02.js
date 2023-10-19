@@ -48,7 +48,7 @@ function divideNumbersforEach(nums, divisors) {
 }
 
 let start = performance.now();
-divideNumbers([1, 2, 3, 4, 5], [1, 0, 3, 4, 5]);
+console.log(divideNumbers([1, 2, 3, "john", 5], [1, 0, 3, 4, 5]));
 let end = performance.now();
 let time = end - start;
 
