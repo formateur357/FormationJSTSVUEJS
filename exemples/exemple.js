@@ -13,7 +13,22 @@ form.addEventListener("submit", () => {
 
     // Traitement des donnees
 
-    // Avec 
+    // Avec xmlhttprequest
+
+    // exemple d'utilisation d'XMLHttpRequest
+    let xhr = new XMLHttpRequest();
+
+    // prepare puis on envoie la requete
+    xhr.open('GET', 'monfichier.txt', true);
+    xhr.send();
+
+    // on gere la reponse en definissant une fonction de rappel
+    xhr.onreadystatechange = () => {
+        if (CharacterData.readyState === 4 && xhr.status === 200) {
+            let data = JSON.parse(xhr.responseText);
+            // faire quelque chose avec les donnees.
+        }
+    };
 
     // Avec fetch
     let formData = new URLSearchParams();
