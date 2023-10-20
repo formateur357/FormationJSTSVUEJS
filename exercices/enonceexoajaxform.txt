@@ -1,0 +1,13 @@
+Exercice : Formulaire de contact avec AJAX et fetch
+Objectif: Créez un formulaire de contact simple. Lorsque l'utilisateur soumet le formulaire, utilisez AJAX avec fetch pour envoyer les données à un faux point de terminaison et afficher un message de succès ou d'erreur à l'utilisateur sans recharger la page.
+
+Structure du formulaire:
+
+Créez un formulaire avec les champs suivants: Nom, E-mail, et Message.
+
+balise classique : input textarea select
+
+Écrivez le code JavaScript pour gérer la soumission du formulaire.
+
+Note: Nous utilisons ici jsonplaceholder.typicode.com, un faux point de terminaison en ligne pour tester les requêtes AJAX. En réalité, vous devriez remplacer l'URL par l'adresse de votre propre serveur traitant le formulaire.
+
