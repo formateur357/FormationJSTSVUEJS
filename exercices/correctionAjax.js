@@ -21,6 +21,8 @@ document.getElementById("contactForm").addEventListener("submit", () => {
         body: formData,
         headers: {
             "Content-Type": "application/x-www-form-urlencoded",
+            // "Content-Security-Policy": "default-src 'self'",
+
         },
     })
     .then(response => {
