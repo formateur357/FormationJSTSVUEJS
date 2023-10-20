@@ -1,7 +1,7 @@
 document.getElementById("contactForm").addEventListener("submit", () => {
     event.preventDefault();
 
-    let nom =document.getElementById("nom").value;
+    let nom =document.getElementById("name").value;
     let email =document.getElementById("email").value;
     let message =document.getElementById("message").value;
     let feedback =document.getElementById("feedback");
