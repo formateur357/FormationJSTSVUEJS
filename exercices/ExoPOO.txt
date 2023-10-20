@@ -1,0 +1,31 @@
+Problème : Système de gestion de zoo
+
+Description :
+Imaginez que vous travaillez pour un zoo et que vous devez créer un système pour suivre les animaux. Utilisez des classes et de l'héritage pour modéliser différents types d'animaux et leurs comportements.
+
+Classe Animal :
+Propriétés : nom, age, genre
+Méthodes : manger(), dormir()
+
+Classe Oiseau (hérite de Animal) :
+Propriétés : envergure (largeur des ailes)
+Méthodes : voler()
+
+Classe Mammifère (hérite de Animal) :
+Propriétés : couleurFur (couleur de la fourrure)
+Méthodes : allaiter()
+
+Instructions :
+Lorsqu'un oiseau vole, il ne doit pas avoir faim (il doit manger avant de voler).
+Seuls les mammifères peuvent allaiter.
+
+// Exemple d'utilisation :
+
+let perroquet = new Oiseau("Pierre", 5, "mâle", "30cm");
+let lion = new Mammifère("Léo", 7, "mâle", "dorée");
+
+perroquet.manger();
+perroquet.voler();
+
+lion.manger();
+lion.allaiter();
