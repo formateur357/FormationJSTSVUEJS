@@ -45,7 +45,7 @@ Pensez à chaîner les méthodes lorsque cela est logique.
 
 Tableau de ventes :
 
-let ventes = [
+const ventes = [
     { id: 10001, date: '2022-01-05', livre: { titre: 'L\'Odyssée', auteur: 'Homère', genre: 'Épopée', prix: 12.50 }, quantite: 5 },
     { id: 10002, date: '2022-01-15', livre: { titre: '1984', auteur: 'George Orwell', genre: 'Science-fiction', prix: 10.00 }, quantite: 2 },
     { id: 10003, date: '2022-01-18', livre: { titre: 'Le Petit Prince', auteur: 'Antoine de Saint-Exupéry', genre: 'Conte philosophique', prix: 8.00 }, quantite: 4 },
