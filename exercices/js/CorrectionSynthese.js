@@ -9,3 +9,6 @@ let statsLivres = ventes.reduce((acc, vente) => {
     acc[vente.livre.titre].revenus += vente.livre.prix * vente.quantite;
     return acc;
 }, {});
+
+// to transform an object in list.
+Object.entries(ventes)
