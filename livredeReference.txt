@@ -1,0 +1,11 @@
+Clean code: A Handbook of Agile Software Craftmanship
+
+Javascript: The Good Parts
+
+You don't know JS (serie)
+
+Refactoring: Improving the design of Existing code
+
+ES6 & Beyond
+
+Effective Javascript: 68 specific ways to harness the power of Javascript
