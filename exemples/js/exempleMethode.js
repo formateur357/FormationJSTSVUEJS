@@ -46,7 +46,7 @@ let dates = [
     new Date(2022, 3, 3)
 ];
 
-dates.sort((a, b) => a - b);
+dates.sort((a, b) => a - b).reverse();
 // console.log(dates);
 
 let motsFr = ["étudiant", "école", "school", "évasion"];
