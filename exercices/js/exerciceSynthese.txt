@@ -1,0 +1,79 @@
+Exercice de synthèse : Analyse des ventes d'une librairie
+
+Contexte :
+Vous travaillez pour une grande librairie. Chaque vente d'un livre est enregistrée dans un objet ayant la structure suivante :
+
+{
+    id: 123456,               // Identifiant unique de la vente
+    date: '2022-01-15',       // Date de la vente
+    livre: {
+        titre: 'Nom du livre',
+        auteur: 'Auteur du livre',
+        genre: 'Roman',
+        prix: 19.99
+    },
+    quantite: 3               // Nombre d'exemplaires vendus lors de cette vente
+}
+
+Données :
+On vous fournit un tableau ventes qui contient plusieurs dizaines de ces objets.
+
+Missions :
+
+Filtrage par période :
+Extrayez toutes les ventes du mois de février 2022.
+
+Statistiques de vente :
+Pour chaque livre (identifié par son titre), calculez le nombre total d'exemplaires vendus et les revenus totaux.
+
+Top 5 des auteurs :
+Établissez le classement des 5 auteurs qui ont généré le plus de revenus.
+
+Genres populaires :
+Identifiez le genre de livre le plus populaire en termes de quantité vendue.
+
+Remise :
+Pour chaque vente où plus de 4 exemplaires d'un livre ont été vendus, accordez une remise de 10% sur le prix total de cette vente. Mettez à jour le tableau de ventes en conséquence.
+
+Conseils :
+
+Utilisez filter pour le filtrage.
+map, reduce et sort seront essentiels pour les calculs et les classements.
+Pour les statistiques de vente, une combinaison de map et reduce sera probablement nécessaire.
+Lors de l'établissement du classement des auteurs, pensez à utiliser une structure intermédiaire pour stocker les totaux, puis triez cette structure.
+Pensez à chaîner les méthodes lorsque cela est logique.
+
+Tableau de ventes :
+
+let ventes = [
+    { id: 10001, date: '2022-01-05', livre: { titre: 'L\'Odyssée', auteur: 'Homère', genre: 'Épopée', prix: 12.50 }, quantite: 5 },
+    { id: 10002, date: '2022-01-15', livre: { titre: '1984', auteur: 'George Orwell', genre: 'Science-fiction', prix: 10.00 }, quantite: 2 },
+    { id: 10003, date: '2022-01-18', livre: { titre: 'Le Petit Prince', auteur: 'Antoine de Saint-Exupéry', genre: 'Conte philosophique', prix: 8.00 }, quantite: 4 },
+    { id: 10004, date: '2022-01-25', livre: { titre: 'L\'Odyssée', auteur: 'Homère', genre: 'Épopée', prix: 12.50 }, quantite: 3 },
+    { id: 10005, date: '2022-02-02', livre: { titre: 'Dune', auteur: 'Frank Herbert', genre: 'Science-fiction', prix: 15.00 }, quantite: 6 },
+    { id: 10006, date: '2022-02-05', livre: { titre: 'Bel-Ami', auteur: 'Maupassant', genre: 'Roman', prix: 9.50 }, quantite: 2 },
+    { id: 10007, date: '2022-02-08', livre: { titre: 'Le Seigneur des Anneaux', auteur: 'J.R.R. Tolkien', genre: 'Fantasy', prix: 20.00 }, quantite: 7 },
+    { id: 10008, date: '2022-02-10', livre: { titre: '1984', auteur: 'George Orwell', genre: 'Science-fiction', prix: 10.00 }, quantite: 5 },
+    { id: 10009, date: '2022-02-12', livre: { titre: 'Le Meilleur des mondes', auteur: 'Aldous Huxley', genre: 'Science-fiction', prix: 11.00 }, quantite: 3 },
+    { id: 10010, date: '2022-02-15', livre: { titre: 'L\'Étranger', auteur: 'Albert Camus', genre: 'Roman', prix: 8.50 }, quantite: 4 },
+    { id: 10011, date: '2022-02-17', livre: { titre: 'La Métamorphose', auteur: 'Franz Kafka', genre: 'Nouvelle', prix: 7.50 }, quantite: 3 },
+    { id: 10012, date: '2022-02-20', livre: { titre: 'Dune', auteur: 'Frank Herbert', genre: 'Science-fiction', prix: 15.00 }, quantite: 2 },
+    { id: 10013, date: '2022-02-25', livre: { titre: 'Le Seigneur des Anneaux', auteur: 'J.R.R. Tolkien', genre: 'Fantasy', prix: 20.00 }, quantite: 5 },
+    { id: 10014, date: '2022-03-02', livre: { titre: '1984', auteur: 'George Orwell', genre: 'Science-fiction', prix: 10.00 }, quantite: 6 },
+    { id: 10015, date: '2022-03-05', livre: { titre: 'Bel-Ami', auteur: 'Maupassant', genre: 'Roman', prix: 9.50 }, quantite: 4 },
+    { id: 10016, date: '2022-03-10', livre: { titre: 'L\'Odyssée', auteur: 'Homère', genre: 'Épopée', prix: 12.50 }, quantite: 3 },
+    { id: 10017, date: '2022-03-12', livre: { titre: 'Le Petit Prince', auteur: 'Antoine de Saint-Exupéry', genre: 'Conte philosophique', prix: 8.00 }, quantite: 5 },
+    { id: 10018, date: '2022-03-15', livre: { titre: 'La Peste', auteur: 'Albert Camus', genre: 'Roman', prix: 10.50 }, quantite: 3 },
+    { id: 10019, date: '2022-03-20', livre: { titre: 'Dune', auteur: 'Frank Herbert', genre: 'Science-fiction', prix: 15.00 }, quantite: 1 },
+    { id: 10020, date: '2022-03-23', livre: { titre: 'Le Meilleur des mondes', auteur: 'Aldous Huxley', genre: 'Science-fiction', prix: 11.00 }, quantite: 2 },
+    { id: 10021, date: '2022-03-26', livre: { titre: 'Bel-Ami', auteur: 'Maupassant', genre: 'Roman', prix: 9.50 }, quantite: 6 },
+    { id: 10022, date: '2022-03-28', livre: { titre: 'L\'Étranger', auteur: 'Albert Camus', genre: 'Roman', prix: 8.50 }, quantite: 4 },
+    { id: 10023, date: '2022-03-30', livre: { titre: 'La Métamorphose', auteur: 'Franz Kafka', genre: 'Nouvelle', prix: 7.50 }, quantite: 2 },
+    { id: 10024, date: '2022-04-01', livre: { titre: 'Le Petit Prince', auteur: 'Antoine de Saint-Exupéry', genre: 'Conte philosophique', prix: 8.00 }, quantite: 5 },
+    { id: 10025, date: '2022-04-05', livre: { titre: '1984', auteur: 'George Orwell', genre: 'Science-fiction', prix: 10.00 }, quantite: 4 },
+    { id: 10026, date: '2022-04-08', livre: { titre: 'L\'Odyssée', auteur: 'Homère', genre: 'Épopée', prix: 12.50 }, quantite: 6 },
+    { id: 10027, date: '2022-04-12', livre: { titre: 'Le Seigneur des Anneaux', auteur: 'J.R.R. Tolkien', genre: 'Fantasy', prix: 20.00 }, quantite: 3 },
+    { id: 10028, date: '2022-04-15', livre: { titre: 'La Peste', auteur: 'Albert Camus', genre: 'Roman', prix: 10.50 }, quantite: 2 },
+    { id: 10029, date: '2022-04-20', livre: { titre: 'Bel-Ami', auteur: 'Maupassant', genre: 'Roman', prix: 9.50 }, quantite: 5 },
+    { id: 10030, date: '2022-04-25', livre: { titre: 'Dune', auteur: 'Frank Herbert', genre: 'Science-fiction', prix: 15.00 }, quantite: 4 },
+];

@@ -38,5 +38,3 @@ let nums = [1, 2, 3, 4, 5, 6];
 Chaînage de méthodes :
 À partir d'un tableau de nombres, trouvez la somme des carrés des nombres impairs. Pour cela, vous devrez combiner filter, map et reduce.
 
-Exo7 :
-
