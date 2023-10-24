@@ -1,0 +1,31 @@
+Exercice : 
+
+Imaginons que nous construisons un système simple pour gérer les animaux dans un zoo.
+
+Interface Animal:
+
+Doit avoir les propriétés name (string) et age (number).
+Doit avoir une méthode speak qui ne prend aucun paramètre et retourne un string.
+
+Classe Zoo:
+Doit avoir une propriété privée animals qui est un tableau d'Animal.
+Doit avoir une méthode statique greeting qui retourne le string "Bienvenue au Zoo!".
+Doit avoir une méthode addAnimal qui prend en paramètre un objet de type Animal et l'ajoute à la liste des animaux.
+Doit avoir une méthode allSpeak qui retourne un tableau de strings des sons de tous les animaux dans le zoo.
+
+Classe Lion et Parrot:
+Les deux classes doivent implémenter l'interface Animal.
+Pour le Lion, la méthode speak retourne "Roar!".
+Pour le Parrot, la méthode speak retourne "Hello! I'm a parrot!".
+
+// Exemple d'utilisation
+const zoo = new Zoo();
+console.log(Zoo.greeting());  // "Bienvenue au Zoo!"
+
+const lion = new Lion("Simba", 5);
+const parrot = new Parrot("Jack", 2);
+
+zoo.addAnimal(lion);
+zoo.addAnimal(parrot);
+
+console.log(zoo.allSpeak());  // ["Roar!", "Hello! I'm a parrot!"]
