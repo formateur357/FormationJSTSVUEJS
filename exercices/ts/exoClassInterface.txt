@@ -29,3 +29,21 @@ zoo.addAnimal(lion);
 zoo.addAnimal(parrot);
 
 console.log(zoo.allSpeak());  // ["Roar!", "Hello! I'm a parrot!"]
+
+Exercice 2:
+
+Classe Abstraite Mammal :
+
+Cette classe abstraite doit implémenter l'interface Animal.
+Elle doit avoir une propriété privée _energyLevel (niveau d'énergie) avec des getters et setters. Le niveau d'énergie est initialisé à 100.
+Elle doit avoir une méthode abstraite eat(), qui, lorsqu'elle sera implémentée, réduira le niveau d'énergie de l'animal.
+
+Classe Monkey :
+
+Doit étendre la classe abstraite Mammal.
+Pour le Monkey, la méthode speak retourne "Ooh ooh ah ah!".
+La méthode eat diminue le _energyLevel de 10 unités.
+
+Intégration dans le Zoo :
+
+Ajouter une méthode feedAll à la classe Zoo qui nourrit tous les mammifères du zoo (c'est-à-dire appelle leur méthode eat).
