@@ -12,7 +12,15 @@
 
     <ul>
       <li v-for="todo in todos" :key="todo.id">
-        <span>{{ todo.title }}</span>
+        <input
+          type="checkbox"
+          :class="{ done: todo.done }"
+          name="todo.id"
+          :checked="todo.done"
+        />
+        <label for="{{ todo.id }}">{{ todo.title }}</label>
+        <button @click="toggleDone(todo)">Termine</button>
+        <button @click="deleteTodo(todo)">Supprimer</button>
       </li>
     </ul>
   </div>
@@ -28,18 +36,29 @@ export default {
     // declaration de la propriete reactive msg
     const msg = ref("Todolist");
     const newTodo = ref("");
-    const todos = ref<Array<{ id: number; title: string }>>([]);
+    const todos = ref<Array<{ id: number; title: string; done: boolean }>>([]);
 
     const addTodo = () => {
       if (newTodo.value.trim()) {
         todos.value.push({
           id: Date.now(),
           title: newTodo.value.trim(),
+          done: false,
         });
         newTodo.value = "";
       }
     };
 
+    const toggleDone = (todo: { id: number; title: string; done: boolean }) => {
+      todo.done = !todo.done;
+    };
+
+    const deleteTodo = (todo: { id: number; title: string; done: boolean }) => {
+      const index = todos.value.indexOf(todo);
+      if (index !== -1) {
+        todos.value.splice(index, 1);
+      }
+    };
     // // Fonction executee apres le montage du composant
     // onMounted(() => {
     //   setTimeout(() => {
@@ -52,10 +71,17 @@ export default {
       newTodo,
       todos,
       addTodo,
+      toggleDone,
+      deleteTodo,
     };
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.done {
+  text-decoration: line-through;
+  color: gray;
+}
+</style>
