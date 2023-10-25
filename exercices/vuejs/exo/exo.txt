@@ -34,9 +34,4 @@ Astuces:
 - Pensez à utiliser la fonction ref de Vue pour créer des variables réactives.
 - Les tâches peuvent être représentées comme des objets avec des propriétés telles que id, text et done.
 
-------------------------------------------------
-
-Bonus:
-- Stylisation: Ajoutez des styles pour améliorer l'apparence de votre TodoList.
-- Filtrage: Permettez aux utilisateurs de filtrer les tâches (par exemple, voir toutes les tâches, seulement les tâches terminées ou seulement les tâches non terminées).
-- Sauvegarde Locale: Sauvegardez les tâches dans le local storage pour qu'elles persistent même si l'utilisateur recharge la page.
+-----------------------------------------------------------------------------------------------------------
