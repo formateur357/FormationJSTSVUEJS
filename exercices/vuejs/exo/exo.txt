@@ -1,0 +1,18 @@
+Exercice 2: Première application Vue
+
+Dans le projet que vous avez créé avec Vue CLI, créez une nouvelle instance Vue.
+Déclarez quelques propriétés dans data et affichez-les dans votre template.
+Modifiez ces propriétés après un certain délai (utilisez setTimeout) et observez le système de réactivité à l'œuvre.
+
+Exercice 3: Directives de base
+
+Utilisez v-bind pour lier une propriété à un attribut HTML. Par exemple, lier une propriété imageURL à un attribut src d'une balise img.
+Utilisez v-model pour créer un champ de saisie bidirectionnel qui met à jour une propriété username.
+Avec v-for, affichez une liste d'articles où chaque article est un objet avec title et content.
+Utilisez v-on pour écouter un clic sur un bouton qui affiche une alerte.
+Créez des conditions d'affichage avec v-if, v-else-if, v-else et v-show pour afficher différents messages basés sur une propriété status (par exemple: "loading", "success", "error").
+
+Exercice 4: Gestion des événements
+
+Écoutez l'événement de soumission d'un formulaire et empêchez son comportement par défaut.
+Sur un bouton, passez un argument à une méthode qui modifie une propriété lorsque l'événement click est déclenché.
