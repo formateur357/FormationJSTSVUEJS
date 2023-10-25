@@ -22,14 +22,16 @@ export default {
   props: {
     msg: String
   },
-  data: {
-    items: [
+  data() {
+    return {
+      items: [
       {name: "Apple", id: 0, color: "red"},
       {name: "Banana", id: 1, color: "yellow"},
       {name: "Peach", id: 2, color: "pink"},
-    ],
-    seen: true,
-    text: "Texte"
+      ],
+      seen: true,
+      text: "Texte"
+    }
   },
   methods: {
     toggleSeen() {
