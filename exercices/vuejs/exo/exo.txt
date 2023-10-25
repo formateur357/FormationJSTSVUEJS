@@ -1,18 +1,42 @@
-Exercice 2: Première application Vue
+Exercice: Première application Vue
 
 Dans le projet que vous avez créé avec Vue CLI, créez une nouvelle instance Vue.
 Déclarez quelques propriétés dans data et affichez-les dans votre template.
 Modifiez ces propriétés après un certain délai (utilisez setTimeout) et observez le système de réactivité à l'œuvre.
 
-Exercice 3: Directives de base
+-----------------------------------------------------------------------------------------------------------
+Exercice: Todolist
 
-Utilisez v-bind pour lier une propriété à un attribut HTML. Par exemple, lier une propriété imageURL à un attribut src d'une balise img.
-Utilisez v-model pour créer un champ de saisie bidirectionnel qui met à jour une propriété username.
-Avec v-for, affichez une liste d'articles où chaque article est un objet avec title et content.
-Utilisez v-on pour écouter un clic sur un bouton qui affiche une alerte.
-Créez des conditions d'affichage avec v-if, v-else-if, v-else et v-show pour afficher différents messages basés sur une propriété status (par exemple: "loading", "success", "error").
+Objectif:
+Créer une simple TodoList qui permet à l'utilisateur d'ajouter, de supprimer et de marquer comme terminées des tâches à faire.
 
-Exercice 4: Gestion des événements
+------------------------------------------------
 
-Écoutez l'événement de soumission d'un formulaire et empêchez son comportement par défaut.
-Sur un bouton, passez un argument à une méthode qui modifie une propriété lorsque l'événement click est déclenché.
+1. Ajouter une Todo:
+- Ajoutez un champ de saisie pour la nouvelle tâche.
+- Ajoutez un bouton pour soumettre la nouvelle tâche.
+- Affichez la liste des tâches sous le champ de saisie.
+- Ajoutez la logique nécessaire pour ajouter une nouvelle tâche à la liste lorsque l'utilisateur clique sur le bouton ou appuie sur la touche Entrée.
+
+------------------------------------------------
+
+2. Marquer une Todo comme terminée et Supprimer:
+- Pour chaque tâche dans la liste, ajoutez un bouton "Terminé" et un bouton "Supprimer".
+- Lorsque l'utilisateur clique sur "Terminé", la tâche doit être visuellement marquée comme terminée.
+- Lorsque l'utilisateur clique sur "Supprimer", la tâche doit être supprimée de la liste.
+- Ajoutez la logique nécessaire pour gérer ces actions.
+
+------------------------------------------------
+
+Astuces:
+- Utilisez v-model pour la liaison bidirectionnelle entre le champ de saisie et une variable réactive.
+- Utilisez v-for pour afficher la liste des tâches.
+- Pensez à utiliser la fonction ref de Vue pour créer des variables réactives.
+- Les tâches peuvent être représentées comme des objets avec des propriétés telles que id, text et done.
+
+------------------------------------------------
+
+Bonus:
+- Stylisation: Ajoutez des styles pour améliorer l'apparence de votre TodoList.
+- Filtrage: Permettez aux utilisateurs de filtrer les tâches (par exemple, voir toutes les tâches, seulement les tâches terminées ou seulement les tâches non terminées).
+- Sauvegarde Locale: Sauvegardez les tâches dans le local storage pour qu'elles persistent même si l'utilisateur recharge la page.
