@@ -116,3 +116,17 @@ function PrintParam(target: object, methodName: string, paramIndex: number) {
 class Task {
     execute(@PrintParam name: string) {}
 }
+
+// Advanced types
+
+// typeof
+
+// if (typeof variable === "string") {}
+
+// instanceof
+
+// if (variable instanceof MyClass) {}
+
+// type Combined = TypeA | TypeB
+
+// type Both = TypeA & TypeB

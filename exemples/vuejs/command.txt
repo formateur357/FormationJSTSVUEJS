@@ -1,0 +1,10 @@
+- Lancer le serveur avec rechargement a chaud :
+
+npm run serve
+
+- Creer une version opti pour la prod
+
+npm run build
+
+
+

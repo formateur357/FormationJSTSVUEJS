@@ -131,3 +131,10 @@ let Task = /** @class */ (() => {
     ], Task.prototype, "execute", null);
     return Task;
 })();
+// Advanced types
+// typeof
+// if (typeof variable === "string") {}
+// instanceof
+// if (variable instanceof MyClass) {}
+// type Combined = TypeA | TypeB
+// type Both = TypeA & TypeB
