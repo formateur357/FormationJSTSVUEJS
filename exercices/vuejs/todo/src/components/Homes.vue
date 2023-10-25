@@ -1,27 +1,58 @@
 <template>
   <div class="homes">
     <h1>{{ msg }}</h1>
+
+    <input
+      type="text"
+      v-model="newTodo"
+      @keyup.enter="addTodo"
+      placeholder="Ajouter une tache..."
+    />
+    <button @click="addTodo">Ajouter</button>
+
+    <ul>
+      <li v-for="todo in todos" :key="todo.id">
+        <span>{{ todo.title }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Homes",
   setup() {
     // declaration de la propriete reactive msg
-    const msg = ref("Hello from vue !");
+    const msg = ref("Todolist");
+    const newTodo = ref("");
+    const todos = ref<Array<{ id: number; title: string }>>([]);
 
-    // Fonction executee apres le montage du composant
-    onMounted(() => {
-      setTimeout(() => {
-        msg.value = "Message modifie apres 3 secondes.";
-      }, 3000);
-    });
+    const addTodo = () => {
+      if (newTodo.value.trim()) {
+        todos.value.push({
+          id: Date.now(),
+          title: newTodo.value.trim(),
+        });
+        newTodo.value = "";
+      }
+    };
 
-    return { msg };
+    // // Fonction executee apres le montage du composant
+    // onMounted(() => {
+    //   setTimeout(() => {
+    //     msg.value = "Message modifie apres 3 secondes.";
+    //   }, 3000);
+    // });
+
+    return {
+      msg,
+      newTodo,
+      todos,
+      addTodo,
+    };
   },
 };
 </script>
