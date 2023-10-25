@@ -6,5 +6,7 @@ npm run serve
 
 npm run build
 
+- ajout de dependance
 
+vue add router
 
