@@ -1,14 +1,16 @@
 <template>
-  <HelloWorld msg="Todo App" />
+  <Homes />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./components/HelloWorld.vue";
+import Home from "./components/Home.vue";
+import Homes from "./components/Homes.vue";
 
 @Options({
   components: {
-    HelloWorld,
+    Home,
+    Homes,
   },
 })
 export default class App extends Vue {}
