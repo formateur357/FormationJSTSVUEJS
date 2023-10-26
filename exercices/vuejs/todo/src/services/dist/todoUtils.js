@@ -8,11 +8,13 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
 };
 exports.__esModule = true;
 exports.sortTodos = exports.priorityOrder = void 0;
+// Objet associant chaque priorité à un ordre numérique pour le tri
 exports.priorityOrder = {
     high: 2,
     medium: 1,
     low: 0
 };
+// Fonction pour trier une liste de tâches en fonction de leur priorité
 exports.sortTodos = function (todos) {
     return __spreadArrays(todos).sort(function (a, b) { return exports.priorityOrder[a.priority] - exports.priorityOrder[b.priority]; });
 };

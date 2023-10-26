@@ -2,19 +2,24 @@
 import { ref, defineProps, defineEmits, withDefaults, watch } from "vue";
 import { Todo } from "@/services/todoUtils";
 
+// Définition des propriétés du composant
 const props = withDefaults(defineProps<{ todo: Todo; index: number }>(), {
   todo: Object,
   index: Number,
 });
 
+// Référence réactive pour la tâche
 const todo = ref({ ...props.todo });
 
+// Surveillance des changements de la tâche
 watch(todo, (newVal) => {
   todo.value = { ...newVal };
 });
 
+// Événements émis par le composant
 const emit = defineEmits(["delete", "edit", "finishEdit", "toggleDone"]);
 
+// Fonctions pour émettre des événements
 const deleteTodo = () => {
   emit("delete", props.index);
 };
@@ -32,6 +37,7 @@ const toggleDone = () => {
 };
 </script>
 
+<!-- Code HTML du sous-composant pour afficher une tâche -->
 <template>
   <li>
     <select v-model="todo.priority">
@@ -61,7 +67,7 @@ const toggleDone = () => {
   </li>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Styles propres à ce sous-composant, y compris le style pour une tâche terminée -->
 <style scoped>
 .done {
   text-decoration: line-through;

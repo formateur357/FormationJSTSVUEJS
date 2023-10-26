@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 
+// Définition d'un composant Vue nommé "HomeComponent"
 export default defineComponent({
   name: "HomeComponent",
 });
@@ -8,14 +9,15 @@ export default defineComponent({
 
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import TodoItemComponent from "@/components/TodoItemComponent.vue";
-import { Todo, sortTodos } from "@/services/todoUtils";
+import TodoItemComponent from "@/components/TodoItemComponent.vue"; // Import du composant enfant
+import { Todo, sortTodos } from "@/services/todoUtils"; // Import des utilitaires
 
-// declaration de la propriete reactive msg
+// Initialisation des propriétés réactives
 const msg = ref("Todolist");
 const newTodo = ref("");
 const todos = ref<Array<Todo>>([]);
 
+// Calculs dérivés des propriétés
 const totalTasks = computed(() => todos.value.length);
 const completedTasks = computed(
   () => todos.value.filter((todo) => todo.done).length
@@ -24,8 +26,10 @@ const completionRate = computed(
   () => (completedTasks.value / totalTasks.value) * 100 || 0
 );
 
+// Tri des tâches
 const sortedTodos = computed(() => sortTodos(todos.value));
 
+// Surveillance des changements dans la liste des tâches
 watch(todos, (newTodos) => {
   const inProgressTasks = newTodos.filter((todo) => !todo.done).length;
   if (inProgressTasks > 10) {
@@ -33,6 +37,7 @@ watch(todos, (newTodos) => {
   }
 });
 
+// Fonctions pour manipuler les tâches
 const addTodo = () => {
   if (newTodo.value.trim()) {
     todos.value.push({
@@ -68,6 +73,7 @@ const finishEditTodo = (index: number) => {
 };
 </script>
 
+<!-- Code HTML du composant, incluant le sous-composant et les statistiques -->
 <template>
   <div class="homes">
     <h1>{{ msg }}</h1>
@@ -99,7 +105,7 @@ const finishEditTodo = (index: number) => {
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Styles propres à ce composant, avec des styles pour chaque niveau de priorité -->
 <style scoped>
 .high {
   color: red;
