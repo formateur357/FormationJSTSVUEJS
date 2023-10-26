@@ -35,3 +35,14 @@ Astuces:
 - Les tâches peuvent être représentées comme des objets avec des propriétés telles que id, text et done.
 
 -----------------------------------------------------------------------------------------------------------
+
+Edition d'une Todo:
+Objectif: Permettre à l'utilisateur de modifier le texte d'une tâche existante.
+
+Instructions:
+
+Ajoutez une icône ou un bouton "Modifier" à côté de chaque tâche.
+Lorsque l'utilisateur clique sur "Modifier", transformez le texte de la tâche en champ de saisie.
+L'utilisateur doit pouvoir modifier le texte et valider avec la touche Entrée ou en cliquant en dehors du champ.
+
+-----------------------------------------------------------------------------------------------------------
