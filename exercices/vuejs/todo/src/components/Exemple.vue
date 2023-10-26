@@ -1,13 +1,20 @@
-<template>
-  <div class="Exemple"></div>
-</template>
+<script setup lang="ts">
+import { ref } from "vue";
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-
-@Options({})
-export default class Exemple extends Vue {}
+const value = ref("HelloWorld");
 </script>
 
+<template>
+  <div id="helloworld">
+    <input v-model="value" type="text" />
+    <p>{{ value }}</p>
+  </div>
+</template>
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+#helloworld {
+  text-align: center;
+  text-decoration: underline;
+}
+</style>

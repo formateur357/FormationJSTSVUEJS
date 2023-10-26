@@ -36,7 +36,8 @@ Astuces:
 
 -----------------------------------------------------------------------------------------------------------
 
-Edition d'une Todo:
+3. Edition d'une Todo:
+
 Objectif: Permettre à l'utilisateur de modifier le texte d'une tâche existante.
 
 Instructions:
@@ -47,13 +48,72 @@ L'utilisateur doit pouvoir modifier le texte et valider avec la touche Entrée o
 
 -----------------------------------------------------------------------------------------------------------
 
-Priorisation des Todos:
+4. Priorisation des Todos:
+
 Objectif: Permettre à l'utilisateur de définir une priorité pour chaque tâche.
 
 Instructions:
 
-À côté de chaque tâche, ajoutez une option pour définir sa priorité (par exemple, haute, moyenne, basse).
-Les tâches peuvent être triées en fonction de leur priorité.
+- À côté de chaque tâche, ajoutez une option pour définir sa priorité (par exemple, haute, moyenne, basse).
+- Les tâches peuvent être triées en fonction de leur priorité.
 Vous pourriez utiliser des couleurs différentes pour chaque niveau de priorité.
 
+-----------------------------------------------------------------------------------------------------------
+5. Filtre de recherche:
+
+Objectif: Ajouter une barre de recherche pour filtrer les tâches par mot-clé.
+
+Instructions:
+
+- Ajoutez un champ de recherche en haut de la liste.
+- Lorsque l'utilisateur tape dans ce champ, filtrez la liste des tâches pour n'afficher que celles contenant le mot-clé saisi.
+
+-----------------------------------------------------------------------------------------------------------
+
+6. Catégorisation des Todos:
+
+Objectif: Laisser les utilisateurs classer leurs tâches par catégories.
+
+Instructions:
+
+- Ajoutez une option pour créer des catégories (par exemple, travail, personnel, courses).
+- Lors de l'ajout ou de la modification d'une tâche, l'utilisateur devrait pouvoir la classer dans une catégorie.
+- Ajoutez une option pour filtrer les tâches par catégorie.
+
+-----------------------------------------------------------------------------------------------------------
+
+7. Utilisation des propriétés calculées pour afficher des statistiques
+
+Objectif:
+Afficher le nombre total de tâches, le nombre de tâches terminées et le pourcentage de tâches terminées.
+
+Instructions:
+- Créez une section "Statistiques" dans votre application.
+- Utilisez une propriété calculée pour déterminer le nombre total de tâches.
+- Utilisez une autre propriété calculée pour déterminer le nombre de tâches terminées.
+- Enfin, utilisez une propriété calculée pour déterminer le pourcentage de tâches terminées.
+
+Astuces:
+Les propriétés calculées sont des fonctions qui sont mises en cache et ne sont recalculées que lorsque leurs dépendances changent.
+
+-----------------------------------------------------------------------------------------------------------
+
+8. Utilisation des observateurs pour surveiller les modifications
+
+Objectif:
+Envoyez une alerte à l'utilisateur s'il a plus de 10 tâches non terminées.
+
+Instructions:
+- Utilisez un observateur pour surveiller la liste des tâches.
+Chaque fois que la liste change, vérifiez combien de tâches ne sont pas terminées.
+- Si le nombre dépasse 10, affichez une alerte à l'utilisateur.
+
+Astuces:
+Utilisez l'option watch pour créer des observateurs dans Vue.
+
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
