@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import { defineProps, defineEmits, withDefaults } from "vue";
+import { ref, defineProps, defineEmits, withDefaults, watch } from "vue";
 import { Todo } from "@/services/todoUtils";
+
 const props = withDefaults(defineProps<{ todo: Todo; index: number }>(), {
   todo: Object,
   index: Number,
+});
+
+const todo = ref({ ...props.todo });
+
+watch(todo, (newVal) => {
+  todo.value = { ...newVal };
 });
 
 const emit = defineEmits(["delete", "edit", "finishEdit", "toggleDone"]);
@@ -27,7 +34,7 @@ const toggleDone = () => {
 
 <template>
   <li>
-    <select v-model="props.todo.priority">
+    <select v-model="todo.priority">
       <option value="low">Basse</option>
       <option value="medium">Moyenne</option>
       <option value="high">Haute</option>
@@ -35,25 +42,22 @@ const toggleDone = () => {
     <input
       type="checkbox"
       name="todo.id"
-      :class="{ done: props.todo.done }"
-      :checked="props.todo.done"
-      v-if="!props.todo.editing"
+      :class="{ done: todo.done }"
+      :checked="todo.done"
+      v-if="!todo.editing"
     />
     <input
-      v-if="props.todo.editing"
-      v-model="props.todo.tempText"
-      @keyup.enter="finishEdit(props.todo)"
-      @blur="finishEdit(props.todo)"
+      v-if="todo.editing"
+      v-model="todo.tempText"
+      @keyup.enter="finishEdit()"
+      @blur="finishEdit()"
     />
-    <label
-      :class="props.todo.priority"
-      for="{{ todo.id }}"
-      v-if="!props.todo.editing"
-      >{{ props.todo.title }}
+    <label :class="todo.priority" for="{{ todo.id }}" v-if="!todo.editing"
+      >{{ todo.title }}
     </label>
-    <button @click="startEdit(props.todo)">Modifier</button>
-    <button @click="toggleDone(props.todo)">Termine</button>
-    <button @click="deleteTodo(props.todo)">Supprimer</button>
+    <button @click="startEdit()">Modifier</button>
+    <button @click="toggleDone()">Termine</button>
+    <button @click="deleteTodo()">Supprimer</button>
   </li>
 </template>
 

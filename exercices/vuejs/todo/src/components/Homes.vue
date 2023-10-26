@@ -7,7 +7,7 @@ export default defineComponent({
 </script>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import TodoItemComponent from "@/components/TodoItemComponent.vue";
 import { Todo, sortTodos } from "@/services/todoUtils";
 
@@ -25,6 +25,13 @@ const completionRate = computed(
 );
 
 const sortedTodos = computed(() => sortTodos(todos.value));
+
+watch(todos, (newTodos) => {
+  const inProgressTasks = newTodos.filter((todo) => !todo.done).length;
+  if (inProgressTasks > 10) {
+    alert("Vous avez plus de 10 taches non terminees!");
+  }
+});
 
 const addTodo = () => {
   if (newTodo.value.trim()) {
