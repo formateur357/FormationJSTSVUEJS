@@ -13,14 +13,15 @@
     <ul>
       <li
         v-for="todo in todos.sort((a, b) => {
-          return a.priority - b.priority;
+          const priorityOrder: Record<Priority, number> = { high: 2, medium: 1, low: 0 };
+          return priorityOrder[a.priority] - priorityOrder[b.priority];
         })"
         :key="todo.id"
       >
         <select v-model="todo.priority">
-          <option value="0">Basse</option>
-          <option value="1">Moyenne</option>
-          <option value="2">Haute</option>
+          <option value="low">Basse</option>
+          <option value="medium">Moyenne</option>
+          <option value="high">Haute</option>
         </select>
         <input
           type="checkbox"
@@ -35,7 +36,7 @@
           @keyup.enter="finishEdit(todo)"
           @blur="finishEdit(todo)"
         />
-        <label for="{{ todo.id }}" v-if="!todo.editing"
+        <label :class="todo.priority" for="{{ todo.id }}" v-if="!todo.editing"
           >{{ todo.title }}
         </label>
         <button @click="startEdit(todo)">Modifier</button>
@@ -43,6 +44,12 @@
         <button @click="deleteTodo(todo)">Supprimer</button>
       </li>
     </ul>
+    <section>
+      <h2>Statistiques</h2>
+      <p>Total des taches : {{ totalTasks }}</p>
+      <p>Taches Terminees : {{ completedTasks }}</p>
+      <p>Pourcentage des taches terminees : {{ completionRate }}</p>
+    </section>
   </div>
 </template>
 
@@ -55,7 +62,9 @@ export default defineComponent({
 </script>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
+
+type Priority = "high" | "medium" | "low";
 
 // declaration de la propriete reactive msg
 const msg = ref("Todolist");
@@ -67,9 +76,17 @@ const todos = ref<
     tempText: string;
     done: boolean;
     editing: boolean;
-    priority: number;
+    priority: Priority;
   }>
 >([]);
+
+const totalTasks = computed(() => todos.value.length);
+const completedTasks = computed(
+  () => todos.value.filter((todo) => todo.done).length
+);
+const completionRate = computed(
+  () => (completedTasks.value / totalTasks.value) * 100 || 0
+);
 
 const addTodo = () => {
   if (newTodo.value.trim()) {
@@ -79,7 +96,7 @@ const addTodo = () => {
       tempText: "",
       done: false,
       editing: false,
-      priority: 0,
+      priority: "low",
     });
     newTodo.value = "";
   }
@@ -91,7 +108,7 @@ const toggleDone = (todo: {
   tempText: string;
   done: boolean;
   editing: boolean;
-  priority: number;
+  priority: Priority;
 }) => {
   todo.done = !todo.done;
 };
@@ -102,7 +119,7 @@ const deleteTodo = (todo: {
   tempText: string;
   done: boolean;
   editing: boolean;
-  priority: number;
+  priority: Priority;
 }) => {
   const index = todos.value.indexOf(todo);
   if (index !== -1) {
@@ -116,7 +133,7 @@ const startEdit = (todo: {
   tempText: string;
   done: boolean;
   editing: boolean;
-  priority: number;
+  priority: Priority;
 }) => {
   todo.editing = true;
   todo.tempText = todo.title;
@@ -128,7 +145,7 @@ const finishEdit = (todo: {
   tempText: string;
   done: boolean;
   editing: boolean;
-  priority: number;
+  priority: Priority;
 }) => {
   if (todo.tempText.trim()) {
     todo.title = todo.tempText;
@@ -148,5 +165,14 @@ const finishEdit = (todo: {
 .done {
   text-decoration: line-through;
   color: gray;
+}
+.high {
+  color: red;
+}
+.medium {
+  color: orange;
+}
+.low {
+  color: green;
 }
 </style>
