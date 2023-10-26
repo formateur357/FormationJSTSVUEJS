@@ -27,7 +27,7 @@ const completionRate = computed(
 );
 
 // Tri des tâches
-const sortedTodos = computed(() => sortTodos(todos.value));
+// const sortedTodos = computed(() => sortTodos(todos.value));
 
 // Surveillance des changements dans la liste des tâches
 watch(todos, (newTodos) => {
@@ -52,24 +52,8 @@ const addTodo = () => {
   }
 };
 
-const toggleDone = (index: number) => {
-  todos.value[index].done = !todos.value[index].done;
-};
-
 const deleteTodo = (index: number) => {
   todos.value.splice(index, 1);
-};
-
-const startEditTodo = (index: number) => {
-  todos.value[index].editing = true;
-  todos.value[index].tempText = todos.value[index].title;
-};
-
-const finishEditTodo = (index: number) => {
-  if (todos.value[index].tempText.trim()) {
-    todos.value[index].title = todos.value[index].tempText;
-    todos.value[index].editing = false;
-  }
 };
 </script>
 
@@ -86,14 +70,11 @@ const finishEditTodo = (index: number) => {
     />
     <button @click="addTodo">Ajouter</button>
 
-    <ul v-for="(todo, index) in sortedTodos" :key="todo.id">
+    <ul v-for="(todo, index) in todos" :key="todo.id">
       <TodoItemComponent
-        :todo="todo"
+        v-model:todo="todos[index]"
         :index="index"
         @delete="deleteTodo"
-        @edit="startEditTodo"
-        @finishEdit="finishEditTodo"
-        @toggleDone="toggleDone"
       />
     </ul>
     <section>
@@ -105,15 +86,5 @@ const finishEditTodo = (index: number) => {
   </div>
 </template>
 
-<!-- Styles propres à ce composant, avec des styles pour chaque niveau de priorité -->
-<style scoped>
-.high {
-  color: red;
-}
-.medium {
-  color: orange;
-}
-.low {
-  color: green;
-}
-</style>
+<!-- Styles propres à ce composant-->
+<style scoped></style>
