@@ -14,11 +14,21 @@
       <li v-for="todo in todos" :key="todo.id">
         <input
           type="checkbox"
-          :class="{ done: todo.done }"
           name="todo.id"
+          :class="{ done: todo.done }"
           :checked="todo.done"
+          v-if="!todo.editing"
         />
-        <label for="{{ todo.id }}">{{ todo.title }}</label>
+        <input
+          v-if="todo.editing"
+          v-model="todo.tempText"
+          @keyup.enter="finishEdit(todo)"
+          @blur="finishEdit(todo)"
+        />
+        <label for="{{ todo.id }}" v-if="!todo.editing"
+          >{{ todo.title }}
+        </label>
+        <button @click="startEdit(todo)">Modifier</button>
         <button @click="toggleDone(todo)">Termine</button>
         <button @click="deleteTodo(todo)">Supprimer</button>
       </li>
@@ -36,27 +46,73 @@ export default {
     // declaration de la propriete reactive msg
     const msg = ref("Todolist");
     const newTodo = ref("");
-    const todos = ref<Array<{ id: number; title: string; done: boolean }>>([]);
+    const todos = ref<
+      Array<{
+        id: number;
+        title: string;
+        tempText: string;
+        done: boolean;
+        editing: boolean;
+      }>
+    >([]);
 
     const addTodo = () => {
       if (newTodo.value.trim()) {
         todos.value.push({
           id: Date.now(),
           title: newTodo.value.trim(),
+          tempText: "",
           done: false,
+          editing: false,
         });
         newTodo.value = "";
       }
     };
 
-    const toggleDone = (todo: { id: number; title: string; done: boolean }) => {
+    const toggleDone = (todo: {
+      id: number;
+      title: string;
+      tempText: string;
+      done: boolean;
+      editing: boolean;
+    }) => {
       todo.done = !todo.done;
     };
 
-    const deleteTodo = (todo: { id: number; title: string; done: boolean }) => {
+    const deleteTodo = (todo: {
+      id: number;
+      title: string;
+      tempText: string;
+      done: boolean;
+      editing: boolean;
+    }) => {
       const index = todos.value.indexOf(todo);
       if (index !== -1) {
         todos.value.splice(index, 1);
+      }
+    };
+
+    const startEdit = (todo: {
+      id: number;
+      title: string;
+      tempText: string;
+      done: boolean;
+      editing: boolean;
+    }) => {
+      todo.editing = true;
+      todo.tempText = todo.title;
+    };
+
+    const finishEdit = (todo: {
+      id: number;
+      title: string;
+      tempText: string;
+      done: boolean;
+      editing: boolean;
+    }) => {
+      if (todo.tempText.trim()) {
+        todo.title = todo.tempText;
+        todo.editing = false;
       }
     };
     // // Fonction executee apres le montage du composant
@@ -73,6 +129,8 @@ export default {
       addTodo,
       toggleDone,
       deleteTodo,
+      startEdit,
+      finishEdit,
     };
   },
 };
