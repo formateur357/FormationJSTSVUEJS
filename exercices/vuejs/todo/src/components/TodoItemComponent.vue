@@ -58,14 +58,6 @@ const toggleDone = () => {
 <!-- Code HTML du sous-composant pour afficher une tâche -->
 <template>
   <li>
-    <select
-      :value="todo.priority"
-      @input="updateTodoPropertyInput('priority', $event)"
-    >
-      <option value="low">Basse</option>
-      <option value="medium">Moyenne</option>
-      <option value="high">Haute</option>
-    </select>
     <input
       type="checkbox"
       name="todo.id"
@@ -86,15 +78,35 @@ const toggleDone = () => {
       v-if="!todo.editing"
       >{{ todo.title }}
     </label>
-    <button @click="startEdit()">Modifier</button>
-    <button @click="toggleDone()">Termine</button>
-    <button @click="deleteTodo()">Supprimer</button>
+
+    <div>
+      <button @click="startEdit()">Modifier</button>
+      <button @click="toggleDone()">Termine</button>
+      <button @click="deleteTodo()">Supprimer</button>
+      <select
+        :value="todo.priority"
+        @input="updateTodoPropertyInput('priority', $event)"
+      >
+        <option value="low">Basse</option>
+        <option value="medium">Moyenne</option>
+        <option value="high">Haute</option>
+      </select>
+    </div>
   </li>
 </template>
 
 <!-- Styles propres à ce sous-composant, y compris le style pour une tâche terminée, avec des styles pour chaque niveau de priorité
  -->
 <style scoped>
+li {
+  list-style-type: none;
+}
+
+select,
+input,
+button {
+  margin: 2px;
+}
 .done {
   text-decoration: line-through;
   color: gray;
