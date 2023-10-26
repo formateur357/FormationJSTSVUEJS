@@ -46,3 +46,14 @@ Lorsque l'utilisateur clique sur "Modifier", transformez le texte de la tâche e
 L'utilisateur doit pouvoir modifier le texte et valider avec la touche Entrée ou en cliquant en dehors du champ.
 
 -----------------------------------------------------------------------------------------------------------
+
+Priorisation des Todos:
+Objectif: Permettre à l'utilisateur de définir une priorité pour chaque tâche.
+
+Instructions:
+
+À côté de chaque tâche, ajoutez une option pour définir sa priorité (par exemple, haute, moyenne, basse).
+Les tâches peuvent être triées en fonction de leur priorité.
+Vous pourriez utiliser des couleurs différentes pour chaque niveau de priorité.
+
+-----------------------------------------------------------------------------------------------------------
