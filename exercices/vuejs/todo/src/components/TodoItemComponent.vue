@@ -1,86 +1,90 @@
 <script setup lang="ts">
-import { defineProps, defineEmits } from "vue";
+import { computed, defineProps } from "vue";
 import { Todo } from "@/services/todoUtils";
+import { store } from "@/services/store";
 
 // Définition des propriétés du composant
-const props = defineProps<{ todo: Todo; index: number }>();
+const props = defineProps<{ id: number; index: number }>();
+const todo = computed(() => {
+  return store.getTodo(props.id);
+});
 
 // Événements émis par le composant
-const emit = defineEmits(["delete", "update:todo"]);
+// const emit = defineEmits(["delete", "update:todo"]);
 
 const updateTodoProperty = (property: keyof Todo, value: any) => {
-  emit("update:todo", { ...props.todo, [property]: value });
+  store.editTodo(todo.value.id, { ...todo.value, [property]: value });
 };
 
-const updateTodoPriority = (event: any) => {
-  const updatedTodo = { ...props.todo, priority: event.target.value };
-  emit("update:todo", updatedTodo);
-};
-
-const updateTodoTempText = (event: any) => {
-  const updatedTodo = { ...props.todo, tempText: event.target.value };
-  emit("update:todo", updatedTodo);
+const updateTodoPropertyInput = (property: keyof Todo, event: any) => {
+  store.editTodo(todo.value.id, {
+    ...todo.value,
+    [property]: event.target.value,
+  });
 };
 
 // Fonctions pour émettre des événements
 const deleteTodo = () => {
-  emit("delete", props.index);
+  store.removeTodo(todo.value.id);
 };
 
 const startEdit = () => {
   const updatedTodo = {
-    ...props.todo,
+    ...todo.value,
     editing: true,
-    tempText: props.todo.title,
+    tempText: todo.value.title,
   };
-  emit("update:todo", updatedTodo);
+  store.editTodo(todo.value.id, updatedTodo);
 };
 
 const finishEdit = () => {
   // emit("finishEdit", props.index);
-  if (props.todo.tempText.trim()) {
+  if (todo.value.tempText.trim()) {
     const updatedTodo = {
-      ...props.todo,
+      ...todo.value,
       editing: false,
-      title: props.todo.tempText,
+      title: todo.value.tempText,
     };
-    emit("update:todo", updatedTodo);
+    store.editTodo(todo.value.id, updatedTodo);
   }
 };
 
 const toggleDone = () => {
   // emit("toggleDone", props.index);
-  updateTodoProperty("done", !props.todo.done);
+  updateTodoProperty("done", !todo.value.done);
 };
 </script>
 
 <!-- Code HTML du sous-composant pour afficher une tâche -->
 <template>
   <li>
-    <select :value="props.todo.priority" @input="updateTodoPriority($event)">
+    <select
+      :value="todo.priority"
+      @input="updateTodoPropertyInput('priority', $event)"
+    >
       <option value="low">Basse</option>
       <option value="medium">Moyenne</option>
       <option value="high">Haute</option>
     </select>
     <input
       type="checkbox"
-      name="props.todo.id"
-      :class="{ done: props.todo.done }"
-      :checked="props.todo.done"
-      v-if="!props.todo.editing"
+      name="todo.id"
+      :class="{ done: todo.done }"
+      :checked="todo.done"
+      v-if="!todo.editing"
     />
     <input
-      v-if="props.todo.editing"
-      :value="props.todo.tempText"
-      @input="updateTodoTempText($event)"
+      v-if="todo.editing"
+      :value="todo.tempText"
+      @input="updateTodoPropertyInput('tempText', $event)"
       @keyup.enter="finishEdit()"
       @blur="finishEdit()"
     />
     <label
-      :class="props.todo.priority"
-      for="{{ props.todo.id }}"
-      v-if="!props.todo.editing"
-      >{{ props.todo.title }}
+      :class="todo.done ? todo.priority + ' done' : todo.priority + ''"
+      for="{{ todo.id }}"
+      v-if="!todo.editing"
+      >{{ todo.title }}
     </label>
     <button @click="startEdit()">Modifier</button>
     <button @click="toggleDone()">Termine</button>
