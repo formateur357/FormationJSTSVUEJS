@@ -55,10 +55,6 @@ const addTodo = () => {
     newTodo.value = "";
   }
 };
-
-const deleteTodo = (id: number) => {
-  store.removeTodo(id);
-};
 </script>
 
 <!-- Code HTML pour la vue principale, incluant l'affichage des tâches et des statistiques -->
@@ -75,7 +71,7 @@ const deleteTodo = (id: number) => {
     <button @click="addTodo">Ajouter</button>
 
     <ul v-for="(todo, index) in sortedTodos" :key="todo.id">
-      <TodoItemComponent :id="todo.id" :index="index" @delete="deleteTodo" />
+      <TodoItemComponent :id="todo.id" :index="index" />
     </ul>
     <section>
       <h2>Statistiques</h2>

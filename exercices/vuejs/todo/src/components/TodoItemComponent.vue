@@ -67,7 +67,6 @@ const toggleDone = () => {
     <input
       type="checkbox"
       name="todo.id"
-      :class="{ done: todo.done }"
       :checked="todo.done"
       v-if="!todo.editing"
     />
