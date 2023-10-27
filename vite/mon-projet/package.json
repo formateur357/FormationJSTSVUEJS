@@ -12,7 +12,11 @@
     "vue": "^3.3.4"
   },
   "devDependencies": {
+    "@types/webpack-env": "^1.18.3",
     "@vitejs/plugin-vue": "^4.2.3",
-    "vite": "^4.4.5"
+    "@vue/runtime-dom": "^3.3.7",
+    "sass": "^1.69.5",
+    "vite": "^4.4.5",
+    "vue-tsc": "^1.8.22"
   }
 }
