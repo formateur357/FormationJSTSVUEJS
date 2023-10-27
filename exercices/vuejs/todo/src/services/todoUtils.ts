@@ -3,6 +3,13 @@
 // Définition du type de priorité pour une tâche
 export type Priority = "high" | "medium" | "low";
 
+// definition de l'enum des categories
+export enum Category {
+  TRAVAIL = "travail",
+  PERSONNEL = "personnel",
+  MAISON = "maison",
+}
+
 // Objet associant chaque priorité à un ordre numérique pour le tri
 export const priorityOrder: Record<Priority, number> = {
   high: 2,
@@ -18,6 +25,7 @@ export type Todo = {
   done: boolean; // Si la tâche est complétée
   editing: boolean; // Si la tâche est en mode édition
   priority: Priority; // Priorité de la tâche
+  category: Category; // Categorie de la tache
 };
 
 // Fonction pour trier les tâches par priorité

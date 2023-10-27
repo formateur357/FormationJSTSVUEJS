@@ -8,7 +8,14 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 exports.__esModule = true;
-exports.sortTodos = exports.priorityOrder = void 0;
+exports.sortTodos = exports.priorityOrder = exports.Category = void 0;
+// definition de l'enum des categories
+var Category;
+(function (Category) {
+    Category["TRAVAIL"] = "travail";
+    Category["PERSONNEL"] = "personnel";
+    Category["MAISON"] = "maison";
+})(Category = exports.Category || (exports.Category = {}));
 // Objet associant chaque priorité à un ordre numérique pour le tri
 exports.priorityOrder = {
     high: 2,

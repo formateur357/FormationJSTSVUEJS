@@ -1,12 +1,14 @@
 // Importation de la méthode reactive depuis Vue 3
 import { reactive } from "vue";
-import { Todo } from "@/services/todoUtils";
+import { Category, Todo } from "@/services/todoUtils";
 
 // État global de l'application, stocké sous forme réactive
 const state = reactive<{
   todos: Todo[];
+  categories: string[];
 }>({
   todos: [],
+  categories: [Category.TRAVAIL, Category.PERSONNEL, Category.MAISON],
 });
 
 // Actions et sélecteurs pour manipuler l'état
@@ -29,6 +31,7 @@ export const store = reactive({
         done: false,
         editing: false,
         priority: "low",
+        category: Category.PERSONNEL,
       }
     );
   },

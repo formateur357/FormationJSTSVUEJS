@@ -4,7 +4,7 @@ import { defineComponent } from "vue";
 
 // Définition d'un composant Vue nommé "HomeComponent"
 export default defineComponent({
-  name: "HomeComponent",
+  name: "HomeComponent"
 });
 </script>
 
@@ -14,7 +14,7 @@ import { computed, ref, watch } from "vue";
 
 // Importation du composant, des types et du magasin d'état
 import TodoItemComponent from "@/components/TodoItemComponent.vue"; // Import du composant enfant
-import { sortTodos } from "@/services/todoUtils"; // Import des utilitaires
+import { sortTodos, Category } from "@/services/todoUtils"; // Import des utilitaires
 import { store } from "@/services/store";
 
 // Initialisation des propriétés réactives
@@ -57,6 +57,7 @@ const addTodo = () => {
       done: false,
       editing: false,
       priority: "low",
+      category: ...,
     });
     newTodo.value = "";
   }
@@ -75,6 +76,9 @@ const addTodo = () => {
       @keyup.enter="addTodo"
       placeholder="Ajouter une tache..."
     />
+    <select>
+      <option></option>
+    </select>
     <button @click="addTodo">Ajouter</button>
 
     <ul v-for="(todo, index) in filteredAndSortedTodos" :key="todo.id">

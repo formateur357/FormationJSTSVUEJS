@@ -14,9 +14,11 @@ exports.__esModule = true;
 exports.store = void 0;
 // Importation de la méthode reactive depuis Vue 3
 var vue_1 = require("vue");
+var todoUtils_1 = require("@/services/todoUtils");
 // État global de l'application, stocké sous forme réactive
 var state = vue_1.reactive({
-    todos: []
+    todos: [],
+    categories: [todoUtils_1.Category.TRAVAIL, todoUtils_1.Category.PERSONNEL, todoUtils_1.Category.MAISON]
 });
 // Actions et sélecteurs pour manipuler l'état
 exports.store = vue_1.reactive({
@@ -34,7 +36,8 @@ exports.store = vue_1.reactive({
             tempText: "",
             done: false,
             editing: false,
-            priority: "low"
+            priority: "low",
+            category: todoUtils_1.Category.PERSONNEL
         });
     },
     // Suppression d'une tâche par son ID
