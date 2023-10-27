@@ -1,4 +1,5 @@
 "use strict";
+// Types et fonctions utilitaires pour gérer les tâches
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
@@ -14,7 +15,7 @@ exports.priorityOrder = {
     medium: 1,
     low: 0
 };
-// Fonction pour trier une liste de tâches en fonction de leur priorité
+// Fonction pour trier les tâches par priorité
 exports.sortTodos = function (todos) {
     return __spreadArrays(todos).sort(function (a, b) { return exports.priorityOrder[a.priority] - exports.priorityOrder[b.priority]; });
 };
