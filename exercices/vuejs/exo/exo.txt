@@ -116,7 +116,36 @@ Utilisez l'option watch pour créer des observateurs dans Vue.
 9. Refactoriser le passage de todo a chaque composant enfant avec le v-model.
 
 -----------------------------------------------------------------------------------------------------------
+
+10. Utilisation des références directes
+
+Objectif : Créer une simple application de comptage qui permet d'incrémenter, de décrémenter ou de réinitialiser un compteur.
+
+Instructions :
+
+Créez un nouveau composant Vue nommé CounterComponent.
+Dans ce composant, initialisez une ref nommée count avec une valeur initiale de 0.
+Affichez la valeur de count dans le template.
+Ajoutez trois boutons : "Incrémenter", "Décrémenter" et "Réinitialiser".
+Chaque bouton doit modifier la valeur de count de manière appropriée lorsqu'il est cliqué.
+
 -----------------------------------------------------------------------------------------------------------
+
+11. Utilisation de provide/inject
+
+Objectif : Créer une application qui a un thème clair/sombre. Le composant parent "fournit" le thème et les composants enfants "injectent" et utilisent ce thème.
+
+Instructions :
+
+Créez un nouveau composant Vue nommé ThemeProvider.
+Dans ThemeProvider, initialisez une ref nommée theme avec la valeur "light".
+Utilisez la méthode provide pour fournir la ref theme à tous les composants descendants.
+Créez un autre composant Vue nommé ThemeDisplay.
+Dans ThemeDisplay, utilisez la méthode inject pour injecter la ref theme du composant parent.
+Dans le template de ThemeDisplay, affichez le thème actuel et ajoutez un bouton qui permet de basculer entre les thèmes "light" et "dark".
+Assurez-vous que lorsque le thème change, il est correctement reflété dans le composant ThemeDisplay.
+Notez que provide/inject est particulièrement utile pour passer des données ou des méthodes à travers plusieurs niveaux de composants sans avoir à utiliser les props à chaque niveau. C'est une forme de gestion d'état simple, mais il faut l'utiliser judicieusement, car il peut rendre le code moins explicite sur la manière dont les données sont passées et modifiées.
+
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------

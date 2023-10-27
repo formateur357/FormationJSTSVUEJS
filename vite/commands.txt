@@ -1,0 +1,12 @@
+npm install -g vue-generate-component-typescript
+
+vgc --help
+
+Options
+
+  --help                   help                                                    
+  -c, --component string   generate Vue js component                               
+  -d, --directive string   generate Vue js directive                               
+  -s, --single string      generate Vue js component single file                   
+  -p, --pipe string        generate Vue js pipe                                    
+  -f, --folder             generate Vue js component single file inside new folder 
