@@ -4,7 +4,7 @@ import { defineComponent } from "vue";
 
 // Définition d'un composant Vue nommé "HomeComponent"
 export default defineComponent({
-  name: "HomeComponent"
+  name: "HomeComponent",
 });
 </script>
 
@@ -21,6 +21,8 @@ import { store } from "@/services/store";
 const msg = ref("Todolist");
 const newTodo = ref("");
 const searchQuery = ref("");
+const selectedCategory = ref<Category>(Category.PERSONNEL);
+const filterCategory = ref("");
 
 // Calculs dérivés des propriétés
 const totalTasks = computed(() => store.state.todos.length);
@@ -33,9 +35,23 @@ const completionRate = computed(
 
 // Tri des tâches
 const filteredAndSortedTodos = computed(() => {
-  const filtered = store.state.todos.filter((todo) =>
-    todo.title.toLowerCase().includes(searchQuery.value.toLowerCase())
-  );
+  let filtered = store.state.todos;
+
+  // filtrage par recherche
+  if (searchQuery.value.trim()) {
+    filtered = filtered.filter((todo) =>
+      todo.title.toLowerCase().includes(searchQuery.value.trim().toLowerCase())
+    );
+  }
+
+  // filtrage par categorie
+  if (filterCategory.value) {
+    filtered = filtered.filter(
+      (todo) => todo.category === filterCategory.value
+    );
+  }
+
+  // tri par priority
   return sortTodos(filtered);
 });
 
@@ -57,7 +73,7 @@ const addTodo = () => {
       done: false,
       editing: false,
       priority: "low",
-      category: ...,
+      category: selectedCategory.value,
     });
     newTodo.value = "";
   }
@@ -69,17 +85,37 @@ const addTodo = () => {
   <div class="homes">
     <h1>{{ msg }}</h1>
 
-    <input type="text" v-model="searchQuery" placeholder="Rechercher..." />
-    <input
-      type="text"
-      v-model="newTodo"
-      @keyup.enter="addTodo"
-      placeholder="Ajouter une tache..."
-    />
-    <select>
-      <option></option>
-    </select>
-    <button @click="addTodo">Ajouter</button>
+    <div>
+      <input type="text" v-model="searchQuery" placeholder="Rechercher..." />
+      <select v-model="filterCategory">
+        <option value="">Toutes les categories</option>
+        <option
+          v-for="category in store.state.categories"
+          :key="category"
+          :value="category"
+        >
+          {{ category }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <input
+        type="text"
+        v-model="newTodo"
+        @keyup.enter="addTodo"
+        placeholder="Ajouter une tache..."
+      />
+      <select v-model="selectedCategory">
+        <option
+          v-for="category in store.state.categories"
+          :key="category"
+          :value="category"
+        >
+          {{ category }}
+        </option>
+      </select>
+      <button @click="addTodo">Ajouter</button>
+    </div>
 
     <ul v-for="(todo, index) in filteredAndSortedTodos" :key="todo.id">
       <TodoItemComponent :id="todo.id" :index="index" />

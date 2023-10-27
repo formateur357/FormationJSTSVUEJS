@@ -8,7 +8,7 @@ const state = reactive<{
   categories: string[];
 }>({
   todos: [],
-  categories: [Category.TRAVAIL, Category.PERSONNEL, Category.MAISON],
+  categories: Object.values(Category),
 });
 
 // Actions et sélecteurs pour manipuler l'état

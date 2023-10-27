@@ -18,7 +18,7 @@ var todoUtils_1 = require("@/services/todoUtils");
 // État global de l'application, stocké sous forme réactive
 var state = vue_1.reactive({
     todos: [],
-    categories: [todoUtils_1.Category.TRAVAIL, todoUtils_1.Category.PERSONNEL, todoUtils_1.Category.MAISON]
+    categories: Object.values(todoUtils_1.Category)
 });
 // Actions et sélecteurs pour manipuler l'état
 exports.store = vue_1.reactive({
