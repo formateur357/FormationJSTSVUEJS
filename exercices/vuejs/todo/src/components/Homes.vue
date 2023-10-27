@@ -20,6 +20,7 @@ import { store } from "@/services/store";
 // Initialisation des propriétés réactives
 const msg = ref("Todolist");
 const newTodo = ref("");
+const searchQuery = ref("");
 
 // Calculs dérivés des propriétés
 const totalTasks = computed(() => store.state.todos.length);
@@ -31,7 +32,12 @@ const completionRate = computed(
 );
 
 // Tri des tâches
-const sortedTodos = computed(() => sortTodos(store.state.todos));
+const filteredAndSortedTodos = computed(() => {
+  const filtered = store.state.todos.filter((todo) => {
+    return todo.title.toLowerCase().includes(searchQuery.value.toLowerCase());
+  });
+  return sortTodos(filtered);
+});
 
 // Surveillance des changements dans la liste des tâches
 watch(store.state.todos, (newTodos) => {
@@ -62,6 +68,7 @@ const addTodo = () => {
   <div class="homes">
     <h1>{{ msg }}</h1>
 
+    <input type="text" v-model="searchQuery" placeholder="Rechercher..." />
     <input
       type="text"
       v-model="newTodo"
@@ -70,7 +77,7 @@ const addTodo = () => {
     />
     <button @click="addTodo">Ajouter</button>
 
-    <ul v-for="(todo, index) in sortedTodos" :key="todo.id">
+    <ul v-for="(todo, index) in filteredAndSortedTodos" :key="todo.id">
       <TodoItemComponent :id="todo.id" :index="index" />
     </ul>
     <section>
