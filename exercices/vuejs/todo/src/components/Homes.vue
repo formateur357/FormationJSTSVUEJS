@@ -33,9 +33,9 @@ const completionRate = computed(
 
 // Tri des tâches
 const filteredAndSortedTodos = computed(() => {
-  const filtered = store.state.todos.filter((todo) => {
-    return todo.title.toLowerCase().includes(searchQuery.value.toLowerCase());
-  });
+  const filtered = store.state.todos.filter((todo) =>
+    todo.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+  );
   return sortTodos(filtered);
 });
 
