@@ -1,4 +1,5 @@
 <script lang="ts">
+// Définition d'un composant Vue (c'est la vue principale)
 import { defineComponent } from "vue";
 
 // Définition d'un composant Vue nommé "HomeComponent"
@@ -8,9 +9,12 @@ export default defineComponent({
 </script>
 
 <script setup lang="ts">
+// Importations et logiques spécifiques à la vue principale
 import { computed, ref, watch } from "vue";
+
+// Importation du composant, des types et du magasin d'état
 import TodoItemComponent from "@/components/TodoItemComponent.vue"; // Import du composant enfant
-import { Todo, sortTodos } from "@/services/todoUtils"; // Import des utilitaires
+import { sortTodos } from "@/services/todoUtils"; // Import des utilitaires
 import { store } from "@/services/store";
 
 // Initialisation des propriétés réactives
@@ -37,7 +41,7 @@ watch(store.state.todos, (newTodos) => {
   }
 });
 
-// Fonctions pour manipuler les tâches
+// Fonctions pour manipuler les tâches depuis la vue principale
 const addTodo = () => {
   if (newTodo.value.trim()) {
     store.addTodo({
@@ -57,7 +61,7 @@ const deleteTodo = (id: number) => {
 };
 </script>
 
-<!-- Code HTML du composant, incluant le sous-composant et les statistiques -->
+<!-- Code HTML pour la vue principale, incluant l'affichage des tâches et des statistiques -->
 <template>
   <div class="homes">
     <h1>{{ msg }}</h1>
@@ -82,5 +86,5 @@ const deleteTodo = (id: number) => {
   </div>
 </template>
 
-<!-- Styles propres à ce composant-->
+<!-- Styles pour cette vue -->
 <style scoped></style>
