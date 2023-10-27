@@ -117,17 +117,27 @@ Utilisez l'option watch pour créer des observateurs dans Vue.
 
 -----------------------------------------------------------------------------------------------------------
 
-10. Utilisation des références directes
+10. Interaction parent-enfant avec refs
 
-Objectif : Créer une simple application de comptage qui permet d'incrémenter, de décrémenter ou de réinitialiser un compteur.
+Description :
+Dans cet exercice, vous allez créer une interaction directe entre un composant parent et un composant enfant en utilisant des refs. Le composant parent aura un bouton qui déclenchera une méthode dans le composant enfant, et le composant enfant aura un bouton qui mettra à jour une donnée du composant parent.
 
 Instructions :
+Créer le composant enfant ChildComponent :
 
-Créez un nouveau composant Vue nommé CounterComponent.
-Dans ce composant, initialisez une ref nommée count avec une valeur initiale de 0.
-Affichez la valeur de count dans le template.
-Ajoutez trois boutons : "Incrémenter", "Décrémenter" et "Réinitialiser".
-Chaque bouton doit modifier la valeur de count de manière appropriée lorsqu'il est cliqué.
+- Ce composant doit avoir une méthode nommée sayHello qui affiche une alerte avec le message "Hello from the child component!".
+- Ce composant doit également avoir un bouton. Lorsque ce bouton est cliqué, il doit mettre à jour une propriété parentMessage du composant parent avec le message "Updated by the child".
+
+Créer le composant parent ParentComponent :
+
+- Il doit avoir une propriété réactive nommée parentMessage initialisée avec la valeur "Initial parent message".
+- Il doit afficher parentMessage dans le template.
+- Il doit également avoir un bouton. Lorsque ce bouton est cliqué, il doit déclencher la méthode sayHello du composant enfant.
+- Intégrez le composant ChildComponent dans le template du ParentComponent.
+
+Astuces :
+- Utilisez la directive ref pour obtenir une référence directe au composant enfant.
+- Utilisez $parent dans le composant enfant pour accéder directement aux propriétés et méthodes du composant parent. (Note : L'utilisation de $parent est généralement déconseillée car elle rend les composants étroitement couplés. Elle est cependant utile pour cet exercice pédagogique).
 
 -----------------------------------------------------------------------------------------------------------
 
@@ -137,14 +147,14 @@ Objectif : Créer une application qui a un thème clair/sombre. Le composant par
 
 Instructions :
 
-Créez un nouveau composant Vue nommé ThemeProvider.
-Dans ThemeProvider, initialisez une ref nommée theme avec la valeur "light".
-Utilisez la méthode provide pour fournir la ref theme à tous les composants descendants.
-Créez un autre composant Vue nommé ThemeDisplay.
-Dans ThemeDisplay, utilisez la méthode inject pour injecter la ref theme du composant parent.
-Dans le template de ThemeDisplay, affichez le thème actuel et ajoutez un bouton qui permet de basculer entre les thèmes "light" et "dark".
-Assurez-vous que lorsque le thème change, il est correctement reflété dans le composant ThemeDisplay.
-Notez que provide/inject est particulièrement utile pour passer des données ou des méthodes à travers plusieurs niveaux de composants sans avoir à utiliser les props à chaque niveau. C'est une forme de gestion d'état simple, mais il faut l'utiliser judicieusement, car il peut rendre le code moins explicite sur la manière dont les données sont passées et modifiées.
+- Créez un nouveau composant Vue nommé ThemeProvider.
+- Dans ThemeProvider, initialisez une ref nommée theme avec la valeur "light".
+- Utilisez la méthode provide pour fournir la ref theme à tous les composants descendants.
+- Créez un autre composant Vue nommé ThemeDisplay.
+- Dans ThemeDisplay, utilisez la méthode inject pour injecter la ref theme du composant parent.
+- Dans le template de ThemeDisplay, affichez le thème actuel et ajoutez un bouton qui permet de basculer entre les thèmes "light" et "dark".
+- Assurez-vous que lorsque le thème change, il est correctement reflété dans le composant ThemeDisplay.
+- Notez que provide/inject est particulièrement utile pour passer des données ou des méthodes à travers plusieurs niveaux de composants sans avoir à utiliser les props à chaque niveau. C'est une forme de gestion d'état simple, mais il faut l'utiliser judicieusement, car il peut rendre le code moins explicite sur la manière dont les données sont passées et modifiées.
 
 -----------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------
